@@ -1,0 +1,8 @@
+#!/bin/sh
+set -eu
+ROOT=$(CDPATH= cd -P "$(dirname "$0")" && pwd)
+cd "$ROOT"
+if [ -x "$ROOT/../hackathonTBC2026/.tools/node24/bin/node" ]; then
+  export PATH="$ROOT/../hackathonTBC2026/.tools/node24/bin:$PATH"
+fi
+exec npm "$@"

@@ -1,0 +1,16 @@
+[
+  {
+    "symbol": "TOKEN X",
+    "name": "Demo token X",
+    "unit": "68569fec5bcd899d9b388a6cb596764319fd4ba82871aa7786bb4dcc583931666162643762",
+    "decimals": 6,
+    "color": "#fc68ad"
+  },
+  {
+    "symbol": "TOKEN Y",
+    "name": "Demo token Y",
+    "unit": "68569fec5bcd899d9b388a6cb596764319fd4ba82871aa7786bb4dcc593931666162643762",
+    "decimals": 6,
+    "color": "#7771e8"
+  }
+]

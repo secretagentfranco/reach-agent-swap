@@ -1,0 +1,48 @@
+{
+  "passed": true,
+  "completedAt": "2026-10-31T12:59:31.346Z",
+  "network": "Preprod",
+  "orderId": "a33658ac5d58f86bdb4013f2b4d2ae91f034ab6597aaab273048c3bd9012b5f8",
+  "walletCount": 20,
+  "confirmedFills": 20,
+  "validEscrowExecutions": 20,
+  "operatorFee": "20 TOKEN X (2% on top of 1000 X)",
+  "makerReceived": "2000 TOKEN Y",
+  "agentCredits": 543.2881,
+  "agentTasks": [
+    {
+      "name": "Hannah",
+      "id": "01a19205-e374-771b-91d5-d094c40abb1f",
+      "status": "COMPLETED",
+      "answer": "8"
+    },
+    {
+      "name": "Alex",
+      "id": "01a19205-e6bc-7604-a306-42526e2b1856",
+      "status": "COMPLETED",
+      "answer": "10"
+    },
+    {
+      "name": "Maya",
+      "id": "01a19205-e9df-72c8-ab50-3cbe871dd157",
+      "status": "COMPLETED",
+      "answer": "12"
+    },
+    {
+      "name": "Jamal",
+      "id": "01a19205-ecd8-74a8-b9c6-116746d6dfe1",
+      "status": "COMPLETED",
+      "answer": "14"
+    }
+  ],
+  "fundingTransaction": "b170103bdcce10e5d812d4fc95e8ee2b3cab8c414663f26a0b53b7f63d66399c",
+  "scriptHash": "a4620d25a8b96db19724aa92577ab6995eba44a856e041ef8eab950d",
+  "checks": [
+    "2% upfront fee transferred in deposited TOKEN X",
+    "20 distinct signed fills; each receives 50 X and pays 100 Y",
+    "Maker received exactly 2000 Y and paid 1000 X plus 20 X fee",
+    "Escrow fully consumed after twentieth fill",
+    "Elena created four real arithmetic Coworker Tasks and all completed",
+    "20 confirmed receipts each executed the exact compiled Plutus validator successfully"
+  ]
+}

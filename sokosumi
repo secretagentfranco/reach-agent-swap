@@ -1,0 +1,8 @@
+#!/bin/sh
+set -eu
+ROOT=$(CDPATH= cd -P "$(dirname "$0")" && pwd)
+CLI="$ROOT/.tools/sokosumi/node_modules/@masumi_network/sokosumi/dist/bin/sokosumi.js"
+if [ ! -f "$CLI" ]; then CLI="$ROOT/../hackathonTBC2026/.tools/sokosumi-control/node_modules/@masumi_network/sokosumi/dist/bin/sokosumi.js"; fi
+NODE=node
+if [ -x "$ROOT/../hackathonTBC2026/.tools/node24/bin/node" ]; then NODE="$ROOT/../hackathonTBC2026/.tools/node24/bin/node"; fi
+exec "$NODE" "$CLI" --preprod "$@"

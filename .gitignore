@@ -1,0 +1,21 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+.local/
+.tools/
+*.log
+escrow/build/
+escrow/plutus.json
+# Earlier account investigations and local-only experiment history
+/docs/
+/evidence/*
+!/evidence/preprod-demo.json
+!/evidence/test-summary.json
+/RESULTS.md
+/active-task.json
+/brief.md
+/coworker-brief.md
+/inspect-*.mjs
+.DS_Store

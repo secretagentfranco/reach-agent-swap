@@ -1,0 +1,559 @@
+{
+  "scenario": "Sell random native TOKEN X for TOKEN Y; Elena delegates four arithmetic tasks; twenty counterparties fill the escrow",
+  "network": "Preprod",
+  "startedAt": "2026-10-31T12:46:43.799Z",
+  "completedAt": "2026-10-31T12:59:31.346Z",
+  "orderId": "a33658ac5d58f86bdb4013f2b4d2ae91f034ab6597aaab273048c3bd9012b5f8",
+  "scriptAddress": "addr_test1wzjxyrf94zukmvvhyj4fy4m6k6v4awjy4ptwqs00364e2rgl6ffrt",
+  "assets": {
+    "X": {
+      "symbol": "TOKEN X",
+      "name": "Demo token X",
+      "unit": "68569fec5bcd899d9b388a6cb596764319fd4ba82871aa7786bb4dcc583931666162643762",
+      "decimals": 6,
+      "color": "#fc68ad"
+    },
+    "Y": {
+      "symbol": "TOKEN Y",
+      "name": "Demo token Y",
+      "unit": "68569fec5bcd899d9b388a6cb596764319fd4ba82871aa7786bb4dcc593931666162643762",
+      "decimals": 6,
+      "color": "#7771e8"
+    }
+  },
+  "offerAmount": "1000000000",
+  "askAmount": "2000000000",
+  "operatorFee": "20000000",
+  "transactions": [
+    {
+      "label": "mint-X-Y-and-fund-20-wallets",
+      "txHash": "3c29dd79f1d8e72dfa9360e7c8de693d0e2426c0ed4e24074d6afc4d72e5ae72",
+      "explorer": "https://preprod.cardanoscan.io/transaction/3c29dd79f1d8e72dfa9360e7c8de693d0e2426c0ed4e24074d6afc4d72e5ae72",
+      "confirmed": true,
+      "submittedAt": "2026-10-31T12:46:50.297Z",
+      "submission": "submitted"
+    },
+    {
+      "label": "fund-escrow-and-2-percent-operator-fee",
+      "txHash": "b170103bdcce10e5d812d4fc95e8ee2b3cab8c414663f26a0b53b7f63d66399c",
+      "explorer": "https://preprod.cardanoscan.io/transaction/b170103bdcce10e5d812d4fc95e8ee2b3cab8c414663f26a0b53b7f63d66399c",
+      "confirmed": true
+    },
+    {
+      "label": "counterparty-01",
+      "txHash": "eec835bd881cfd3962e6f1ff301d456fc11f22983214b13de89b3bc88994db2c",
+      "explorer": "https://preprod.cardanoscan.io/transaction/eec835bd881cfd3962e6f1ff301d456fc11f22983214b13de89b3bc88994db2c",
+      "confirmed": true,
+      "submittedAt": "2026-10-31T12:48:43.678Z",
+      "submission": "submitted"
+    },
+    {
+      "label": "counterparty-02",
+      "txHash": "24ad14a011253875335e7ccdecd311cf45161265e2d697f0ad097db0c9bb6714",
+      "explorer": "https://preprod.cardanoscan.io/transaction/24ad14a011253875335e7ccdecd311cf45161265e2d697f0ad097db0c9bb6714",
+      "confirmed": true,
+      "submittedAt": "2026-10-31T12:50:43.278Z",
+      "submission": "submitted"
+    },
+    {
+      "label": "counterparty-03",
+      "txHash": "d7200bac79f2503d7899f0f3d041f44113ff8ead57a802b80d3af63393664f46",
+      "explorer": "https://preprod.cardanoscan.io/transaction/d7200bac79f2503d7899f0f3d041f44113ff8ead57a802b80d3af63393664f46",
+      "confirmed": true,
+      "submittedAt": "2026-10-31T12:51:03.200Z",
+      "submission": "submitted"
+    },
+    {
+      "label": "counterparty-04",
+      "txHash": "bcb4aa1da5bddf82cc3829256f7cc7c3088bd88389168de35d82a509b03bac79",
+      "explorer": "https://preprod.cardanoscan.io/transaction/bcb4aa1da5bddf82cc3829256f7cc7c3088bd88389168de35d82a509b03bac79",
+      "confirmed": true,
+      "submittedAt": "2026-10-31T12:51:56.787Z",
+      "submission": "submitted"
+    },
+    {
+      "label": "counterparty-05",
+      "txHash": "d6007f112656e9934874b352d1006abe2b911dc0b675cf64c783aa6aa834d90b",
+      "explorer": "https://preprod.cardanoscan.io/transaction/d6007f112656e9934874b352d1006abe2b911dc0b675cf64c783aa6aa834d90b",
+      "confirmed": true,
+      "submittedAt": "2026-10-31T12:52:07.663Z",
+      "submission": "submitted"
+    },
+    {
+      "label": "counterparty-06",
+      "txHash": "e6fde6eae8318b8875bede945d1ed8590faf89ecaf4471c4d7ccd33505072983",
+      "explorer": "https://preprod.cardanoscan.io/transaction/e6fde6eae8318b8875bede945d1ed8590faf89ecaf4471c4d7ccd33505072983",
+      "confirmed": true,
+      "submittedAt": "2026-10-31T12:53:00.412Z",
+      "submission": "submitted"
+    },
+    {
+      "label": "counterparty-07",
+      "txHash": "22e03c71e22ddf8879b85b463ef4793b568698bf2d14b476fc48d1b59869cdfe",
+      "explorer": "https://preprod.cardanoscan.io/transaction/22e03c71e22ddf8879b85b463ef4793b568698bf2d14b476fc48d1b59869cdfe",
+      "confirmed": true,
+      "submittedAt": "2026-10-31T12:53:12.562Z",
+      "submission": "submitted"
+    },
+    {
+      "label": "counterparty-08",
+      "txHash": "6a0ea55c95cb0e52b0e8ac8e4df7de29ab7ce0f47730b260419aa722f1e46c64",
+      "explorer": "https://preprod.cardanoscan.io/transaction/6a0ea55c95cb0e52b0e8ac8e4df7de29ab7ce0f47730b260419aa722f1e46c64",
+      "confirmed": true,
+      "submittedAt": "2026-10-31T12:53:23.989Z",
+      "submission": "submitted"
+    },
+    {
+      "label": "counterparty-09",
+      "txHash": "9ba116bd7b8718c94bbd1fc34c56e031d9572ba936f15855a3761a28dfb886e9",
+      "explorer": "https://preprod.cardanoscan.io/transaction/9ba116bd7b8718c94bbd1fc34c56e031d9572ba936f15855a3761a28dfb886e9",
+      "confirmed": true,
+      "submittedAt": "2026-10-31T12:53:59.796Z",
+      "submission": "submitted"
+    },
+    {
+      "label": "counterparty-10",
+      "txHash": "253dd742c82a795166ca8bd21ce6e78b95b67002aa02a35c42fa20becc1da560",
+      "explorer": "https://preprod.cardanoscan.io/transaction/253dd742c82a795166ca8bd21ce6e78b95b67002aa02a35c42fa20becc1da560",
+      "confirmed": true,
+      "submittedAt": "2026-10-31T12:54:53.116Z",
+      "submission": "submitted"
+    },
+    {
+      "label": "counterparty-11",
+      "txHash": "4004d2d9cd103f4129b53ad5d8dd1ef44d53210950ebecb94c4ac30907e5d61c",
+      "explorer": "https://preprod.cardanoscan.io/transaction/4004d2d9cd103f4129b53ad5d8dd1ef44d53210950ebecb94c4ac30907e5d61c",
+      "confirmed": true,
+      "submittedAt": "2026-10-31T12:55:05.253Z",
+      "submission": "submitted"
+    },
+    {
+      "label": "counterparty-12",
+      "txHash": "ca16ca04dc637ac83cff12fe0889a5452f79c506287109922fd3123e6ea32a6b",
+      "explorer": "https://preprod.cardanoscan.io/transaction/ca16ca04dc637ac83cff12fe0889a5452f79c506287109922fd3123e6ea32a6b",
+      "confirmed": true,
+      "submittedAt": "2026-10-31T12:55:25.437Z",
+      "submission": "submitted"
+    },
+    {
+      "label": "counterparty-13",
+      "txHash": "83a0f822a807c1b8678ab8ef661f276b86e5e66e8fc6c2a294fb1fa5368a0498",
+      "explorer": "https://preprod.cardanoscan.io/transaction/83a0f822a807c1b8678ab8ef661f276b86e5e66e8fc6c2a294fb1fa5368a0498",
+      "confirmed": true,
+      "submittedAt": "2026-10-31T12:56:01.415Z",
+      "submission": "submitted"
+    },
+    {
+      "label": "counterparty-14",
+      "txHash": "00a5de8d05e3942293d380e7995ad8345de2e26f293d769dad031887c86960df",
+      "explorer": "https://preprod.cardanoscan.io/transaction/00a5de8d05e3942293d380e7995ad8345de2e26f293d769dad031887c86960df",
+      "confirmed": true,
+      "submittedAt": "2026-10-31T12:56:21.429Z",
+      "submission": "submitted"
+    },
+    {
+      "label": "counterparty-15",
+      "txHash": "e117ad56b197a94a449f9a41174d0963212383c148a1a7171b1bdc4e5d3e5fbc",
+      "explorer": "https://preprod.cardanoscan.io/transaction/e117ad56b197a94a449f9a41174d0963212383c148a1a7171b1bdc4e5d3e5fbc",
+      "confirmed": true,
+      "submittedAt": "2026-10-31T12:56:40.631Z",
+      "submission": "submitted"
+    },
+    {
+      "label": "counterparty-16",
+      "txHash": "6669e2e3f5f4deb63a4f2cb4fc54fdc59950b4f99ba13282e3b6c49dfb10c78c",
+      "explorer": "https://preprod.cardanoscan.io/transaction/6669e2e3f5f4deb63a4f2cb4fc54fdc59950b4f99ba13282e3b6c49dfb10c78c",
+      "confirmed": true,
+      "submittedAt": "2026-10-31T12:56:52.885Z",
+      "submission": "submitted"
+    },
+    {
+      "label": "counterparty-17",
+      "txHash": "6527fd2478ffed7d3d4c2a24a0dfbd36a2ef81d3383d4522737c407f83f83595",
+      "explorer": "https://preprod.cardanoscan.io/transaction/6527fd2478ffed7d3d4c2a24a0dfbd36a2ef81d3383d4522737c407f83f83595",
+      "confirmed": true,
+      "submittedAt": "2026-10-31T12:57:03.814Z",
+      "submission": "submitted"
+    },
+    {
+      "label": "counterparty-18",
+      "txHash": "e3acc5913934037967ee0f0ccd3a23043e3793561f533d56e6e395f85d255452",
+      "explorer": "https://preprod.cardanoscan.io/transaction/e3acc5913934037967ee0f0ccd3a23043e3793561f533d56e6e395f85d255452",
+      "confirmed": true,
+      "submittedAt": "2026-10-31T12:58:46.830Z",
+      "submission": "submitted"
+    },
+    {
+      "label": "counterparty-19",
+      "txHash": "049fefa020b1854401c7013656f4f9b0f97c26e2e66d9ffbe49f7d0084eecb61",
+      "explorer": "https://preprod.cardanoscan.io/transaction/049fefa020b1854401c7013656f4f9b0f97c26e2e66d9ffbe49f7d0084eecb61",
+      "confirmed": true,
+      "submittedAt": "2026-10-31T12:58:58.958Z",
+      "submission": "submitted"
+    },
+    {
+      "label": "counterparty-20",
+      "txHash": "8c6d23cb2f2cfe7315a1b21ffece2fe92406ebd32d496ae74cb8af83de88f3f8",
+      "explorer": "https://preprod.cardanoscan.io/transaction/8c6d23cb2f2cfe7315a1b21ffece2fe92406ebd32d496ae74cb8af83de88f3f8",
+      "confirmed": true,
+      "submittedAt": "2026-10-31T12:59:10.578Z",
+      "submission": "submitted"
+    }
+  ],
+  "fills": [
+    {
+      "index": 0,
+      "wallet": "addr_test1qppv4mlgge92lykyl98f4rw4fwlyfp0lnq40xcmtc5qzlhqmegcxarqngu0tqwranp2kp6ht8ahywux63ldluqpwqurqxa3jcl",
+      "txHash": "eec835bd881cfd3962e6f1ff301d456fc11f22983214b13de89b3bc88994db2c",
+      "receivedX": "50000000",
+      "remainingY": "0"
+    },
+    {
+      "index": 1,
+      "wallet": "addr_test1qqqkrc5vdhp3zggkx78y88n99r3t7evpnhywth0q3gsyx8zvwmmh844s0x98dh8ggkd2pzrt8vew962y790xpwvj6azsdtetvp",
+      "txHash": "24ad14a011253875335e7ccdecd311cf45161265e2d697f0ad097db0c9bb6714",
+      "receivedX": "50000000",
+      "remainingY": "0"
+    },
+    {
+      "index": 2,
+      "wallet": "addr_test1qrez25udqvm53fn5ettv2hwpfe4uqvjj3kn3r8ml78mxp2yh5j5r9cewpr05tqryclfdjgj5l356sumqfmdydjcw49kssjgsgw",
+      "txHash": "d7200bac79f2503d7899f0f3d041f44113ff8ead57a802b80d3af63393664f46",
+      "receivedX": "50000000",
+      "remainingY": "0"
+    },
+    {
+      "index": 3,
+      "wallet": "addr_test1qq8pa66ecyakl25ktw9sf4adfgztd4n2z09h09ue4wqcflkq9wcdtf33rq3y2ceuptr4n62ng62dptjnq469jk94a7uscatr84",
+      "txHash": "bcb4aa1da5bddf82cc3829256f7cc7c3088bd88389168de35d82a509b03bac79",
+      "receivedX": "50000000",
+      "remainingY": "0"
+    },
+    {
+      "index": 4,
+      "wallet": "addr_test1qq9srhl62vwrypc2xheppu862yx809c6yvwpfds97a7d4x8xavcjyz02l2z8ump9869yv2z7yjk9wudwjw895g3wq3dsswx4ky",
+      "txHash": "d6007f112656e9934874b352d1006abe2b911dc0b675cf64c783aa6aa834d90b",
+      "receivedX": "50000000",
+      "remainingY": "0"
+    },
+    {
+      "index": 5,
+      "wallet": "addr_test1qzmz7xrqzpleruq46a4yrkumgrguljvnhrrzgn8vxlrdw3apgk73sajvgq7aqk9xsg2w7kffxq9kcc792qz2wjn7rumqse46nk",
+      "txHash": "e6fde6eae8318b8875bede945d1ed8590faf89ecaf4471c4d7ccd33505072983",
+      "receivedX": "50000000",
+      "remainingY": "0"
+    },
+    {
+      "index": 6,
+      "wallet": "addr_test1qrq78zkd47r9su7jlj2d0vgrpyxg23geadntlxfp8erdpt0e5f93yefc36mfd66plyqj7nhhaxf8sz592v8t78wlms7scyk3jw",
+      "txHash": "22e03c71e22ddf8879b85b463ef4793b568698bf2d14b476fc48d1b59869cdfe",
+      "receivedX": "50000000",
+      "remainingY": "0"
+    },
+    {
+      "index": 7,
+      "wallet": "addr_test1qrfz92r3u5rrqjm4gu8clhc70hck2dgakpd8cpmt772eask22zkserkkw2f3k57mzgyh4cxdjd7na364acyrsf4zpvnq3fhzx0",
+      "txHash": "6a0ea55c95cb0e52b0e8ac8e4df7de29ab7ce0f47730b260419aa722f1e46c64",
+      "receivedX": "50000000",
+      "remainingY": "0"
+    },
+    {
+      "index": 8,
+      "wallet": "addr_test1qp4v6rwdfxzmst7ermx8jfl7ha64y8srh40p69ng23jyk808tsgz5fgccg8gkkfzz8ls8rg69t7lc94d3ztnltyay5lsjz9dzn",
+      "txHash": "9ba116bd7b8718c94bbd1fc34c56e031d9572ba936f15855a3761a28dfb886e9",
+      "receivedX": "50000000",
+      "remainingY": "0"
+    },
+    {
+      "index": 9,
+      "wallet": "addr_test1qr57qtz09cpwttcfuw6ekh3s2za3w0x8wy53tv70y488zuk5397ep50pfm0433fgsnheld6cmva00znh3agme6g4vt9s0mfgqw",
+      "txHash": "253dd742c82a795166ca8bd21ce6e78b95b67002aa02a35c42fa20becc1da560",
+      "receivedX": "50000000",
+      "remainingY": "0"
+    },
+    {
+      "index": 10,
+      "wallet": "addr_test1qpvyvauuzdxuwk3773cl2h7kyvj47zqzn0dmj7txsq6qra7749wa9wqksp4563q4zuh059vaps28zacx7t78h3qal69s8440nn",
+      "txHash": "4004d2d9cd103f4129b53ad5d8dd1ef44d53210950ebecb94c4ac30907e5d61c",
+      "receivedX": "50000000",
+      "remainingY": "0"
+    },
+    {
+      "index": 11,
+      "wallet": "addr_test1qql4x9demlx2d5svmprykx6c6zgxtv6r9k8sz3ntaag75s80n6kywmfczh3a6hsx6s67ax40lehuz04mh2xsnyp9kk0quxda0w",
+      "txHash": "ca16ca04dc637ac83cff12fe0889a5452f79c506287109922fd3123e6ea32a6b",
+      "receivedX": "50000000",
+      "remainingY": "0"
+    },
+    {
+      "index": 12,
+      "wallet": "addr_test1qq20f8jhqpc4t6upvx3pk8kvaecey07we9lcef234xwv0sjgrvue8658ryq254mcc0t8mypyd5v2jcnffyluj4d0d9lqzv5uvk",
+      "txHash": "83a0f822a807c1b8678ab8ef661f276b86e5e66e8fc6c2a294fb1fa5368a0498",
+      "receivedX": "50000000",
+      "remainingY": "0"
+    },
+    {
+      "index": 13,
+      "wallet": "addr_test1qr4y6ae0ul99ucz4jf7el2sfuvk3mh69f63353kh8xkw8a2303j33fetsst0qhwx5yawe2qfl0vrawsnfw2yjrwn968qkasr5w",
+      "txHash": "00a5de8d05e3942293d380e7995ad8345de2e26f293d769dad031887c86960df",
+      "receivedX": "50000000",
+      "remainingY": "0"
+    },
+    {
+      "index": 14,
+      "wallet": "addr_test1qq9he78ey88hsn3magfrxza4quuj4960c5s0wtet80cgwm2g5la8lgfv8025sgr6c30x53hcdx072xc2hfkln32jmkhs3ktr8n",
+      "txHash": "e117ad56b197a94a449f9a41174d0963212383c148a1a7171b1bdc4e5d3e5fbc",
+      "receivedX": "50000000",
+      "remainingY": "0"
+    },
+    {
+      "index": 15,
+      "wallet": "addr_test1qq5x6vz96kex9fxctss0lec4sma59k5kcg8j3teqa7438gwtegwkycsuzew0carwwuxrf909eu20am43khkvzzpy3fuqchqp5u",
+      "txHash": "6669e2e3f5f4deb63a4f2cb4fc54fdc59950b4f99ba13282e3b6c49dfb10c78c",
+      "receivedX": "50000000",
+      "remainingY": "0"
+    },
+    {
+      "index": 16,
+      "wallet": "addr_test1qracpxht0jjhryfvnrt335487k8xznh73fvykn9mk5cwn2tudkxv9j0nl5q4vhkpx2xpfza96tt0narf38dj0an78rvs2ky0aq",
+      "txHash": "6527fd2478ffed7d3d4c2a24a0dfbd36a2ef81d3383d4522737c407f83f83595",
+      "receivedX": "50000000",
+      "remainingY": "0"
+    },
+    {
+      "index": 17,
+      "wallet": "addr_test1qzkfs8rjwunvqlmz55xrlnqvp7pzgyx7qp2fl6tjymfyv9lgcnnum7fms6lge28d73rjt73ucyjfjumpdxpwan38xzyqc0l3l9",
+      "txHash": "e3acc5913934037967ee0f0ccd3a23043e3793561f533d56e6e395f85d255452",
+      "receivedX": "50000000",
+      "remainingY": "0"
+    },
+    {
+      "index": 18,
+      "wallet": "addr_test1qrl74stvq02qcnlyjs5nu7qy40xg46musrfv75ymews79pts4g78sgafagnm35hwx8jwzlc34q6mlg4qmddkt7pwe4xq04d9q4",
+      "txHash": "049fefa020b1854401c7013656f4f9b0f97c26e2e66d9ffbe49f7d0084eecb61",
+      "receivedX": "50000000",
+      "remainingY": "0"
+    },
+    {
+      "index": 19,
+      "wallet": "addr_test1qzqpplepr002jant8zzhtvfywmmca2yvpjq2av8vzld392pqgy56d2hka2rje0jxj39x3mvz2t3mwe6u29sxykcg3kcq7qk2n6",
+      "txHash": "8c6d23cb2f2cfe7315a1b21ffece2fe92406ebd32d496ae74cb8af83de88f3f8",
+      "receivedX": "50000000",
+      "remainingY": "0"
+    }
+  ],
+  "checks": [
+    {
+      "name": "2% upfront fee transferred in deposited TOKEN X",
+      "passed": true,
+      "feeBaseUnits": "20000000"
+    },
+    {
+      "name": "20 distinct signed fills; each receives 50 X and pays 100 Y",
+      "passed": true
+    },
+    {
+      "name": "Maker received exactly 2000 Y and paid 1000 X plus 20 X fee",
+      "passed": true
+    },
+    {
+      "name": "Escrow fully consumed after twentieth fill",
+      "passed": true
+    },
+    {
+      "name": "Elena created four real arithmetic Coworker Tasks and all completed",
+      "passed": true
+    },
+    {
+      "name": "20 confirmed receipts each executed the exact compiled Plutus validator successfully",
+      "passed": true
+    }
+  ],
+  "receipts": [
+    {
+      "txHash": "eec835bd881cfd3962e6f1ff301d456fc11f22983214b13de89b3bc88994db2c",
+      "blockHeight": 5357124,
+      "blockHash": "1419bb674443363145cb09a0428cc42123d1fff744913c88e268aee549c53ad9",
+      "scriptHash": "a4620d25a8b96db19724aa92577ab6995eba44a856e041ef8eab950d",
+      "validEscrowExecutions": 1
+    },
+    {
+      "txHash": "24ad14a011253875335e7ccdecd311cf45161265e2d697f0ad097db0c9bb6714",
+      "blockHeight": 5357127,
+      "blockHash": "0b9daa79bb6385e9753fd7e3a268028c99291de03d6e0035bef1e5f81eeaca3f",
+      "scriptHash": "a4620d25a8b96db19724aa92577ab6995eba44a856e041ef8eab950d",
+      "validEscrowExecutions": 1
+    },
+    {
+      "txHash": "d7200bac79f2503d7899f0f3d041f44113ff8ead57a802b80d3af63393664f46",
+      "blockHeight": 5357128,
+      "blockHash": "1c533e6e73445495001d563405fe33c2f90be5eb11c908097a358611ff5ce6d6",
+      "scriptHash": "a4620d25a8b96db19724aa92577ab6995eba44a856e041ef8eab950d",
+      "validEscrowExecutions": 1
+    },
+    {
+      "txHash": "bcb4aa1da5bddf82cc3829256f7cc7c3088bd88389168de35d82a509b03bac79",
+      "blockHeight": 5357130,
+      "blockHash": "fcf7fc1d14b0a48bd317bb7d29d25675b1e0903d683a86320926e73b672dadf7",
+      "scriptHash": "a4620d25a8b96db19724aa92577ab6995eba44a856e041ef8eab950d",
+      "validEscrowExecutions": 1
+    },
+    {
+      "txHash": "d6007f112656e9934874b352d1006abe2b911dc0b675cf64c783aa6aa834d90b",
+      "blockHeight": 5357131,
+      "blockHash": "43d81ec00d6469f491af9d7b8ccf70ca2782e7c572015300bd3049ec3bc627a6",
+      "scriptHash": "a4620d25a8b96db19724aa92577ab6995eba44a856e041ef8eab950d",
+      "validEscrowExecutions": 1
+    },
+    {
+      "txHash": "e6fde6eae8318b8875bede945d1ed8590faf89ecaf4471c4d7ccd33505072983",
+      "blockHeight": 5357132,
+      "blockHash": "7dd5ee174c9f608ad126ad6d5d3bf6fccc0fea00e0b43d52815c8753bb306ad2",
+      "scriptHash": "a4620d25a8b96db19724aa92577ab6995eba44a856e041ef8eab950d",
+      "validEscrowExecutions": 1
+    },
+    {
+      "txHash": "22e03c71e22ddf8879b85b463ef4793b568698bf2d14b476fc48d1b59869cdfe",
+      "blockHeight": 5357133,
+      "blockHash": "5d26094ed74a9e41629dc53542098404827cd3d671d2c5376c1eb8ae40374726",
+      "scriptHash": "a4620d25a8b96db19724aa92577ab6995eba44a856e041ef8eab950d",
+      "validEscrowExecutions": 1
+    },
+    {
+      "txHash": "6a0ea55c95cb0e52b0e8ac8e4df7de29ab7ce0f47730b260419aa722f1e46c64",
+      "blockHeight": 5357134,
+      "blockHash": "bde08aae3f7020301667458e8ac45c9127db74567874758e811d16dac85567f0",
+      "scriptHash": "a4620d25a8b96db19724aa92577ab6995eba44a856e041ef8eab950d",
+      "validEscrowExecutions": 1
+    },
+    {
+      "txHash": "9ba116bd7b8718c94bbd1fc34c56e031d9572ba936f15855a3761a28dfb886e9",
+      "blockHeight": 5357135,
+      "blockHash": "b647544d4160f04dbdc512d636e9714dfc7e72093464ffaf3d99014534f4dbea",
+      "scriptHash": "a4620d25a8b96db19724aa92577ab6995eba44a856e041ef8eab950d",
+      "validEscrowExecutions": 1
+    },
+    {
+      "txHash": "253dd742c82a795166ca8bd21ce6e78b95b67002aa02a35c42fa20becc1da560",
+      "blockHeight": 5357137,
+      "blockHash": "b9ec8cc4103a742b029540d2c4450132f5dc436aa9e3eec5461c6778e70b15c8",
+      "scriptHash": "a4620d25a8b96db19724aa92577ab6995eba44a856e041ef8eab950d",
+      "validEscrowExecutions": 1
+    },
+    {
+      "txHash": "4004d2d9cd103f4129b53ad5d8dd1ef44d53210950ebecb94c4ac30907e5d61c",
+      "blockHeight": 5357138,
+      "blockHash": "07763b3f0d15eaba033e882dac5f7fd0847ebce42ace728127bbb3a1e5ad21f5",
+      "scriptHash": "a4620d25a8b96db19724aa92577ab6995eba44a856e041ef8eab950d",
+      "validEscrowExecutions": 1
+    },
+    {
+      "txHash": "ca16ca04dc637ac83cff12fe0889a5452f79c506287109922fd3123e6ea32a6b",
+      "blockHeight": 5357140,
+      "blockHash": "5cc49ab96ea2df7e1b9118718b26b35c54c13ffe1b3d27bd06c478d1ff42affd",
+      "scriptHash": "a4620d25a8b96db19724aa92577ab6995eba44a856e041ef8eab950d",
+      "validEscrowExecutions": 1
+    },
+    {
+      "txHash": "83a0f822a807c1b8678ab8ef661f276b86e5e66e8fc6c2a294fb1fa5368a0498",
+      "blockHeight": 5357141,
+      "blockHash": "bea4210a50dfa8f2d1830d31c8df64edbfe839aedea6271a43230a7dcf6cf0cb",
+      "scriptHash": "a4620d25a8b96db19724aa92577ab6995eba44a856e041ef8eab950d",
+      "validEscrowExecutions": 1
+    },
+    {
+      "txHash": "00a5de8d05e3942293d380e7995ad8345de2e26f293d769dad031887c86960df",
+      "blockHeight": 5357142,
+      "blockHash": "fe52fb903834e65ce1d7ea83d9d0f2991c1039dc1433ebb6127e200ee3a813d8",
+      "scriptHash": "a4620d25a8b96db19724aa92577ab6995eba44a856e041ef8eab950d",
+      "validEscrowExecutions": 1
+    },
+    {
+      "txHash": "e117ad56b197a94a449f9a41174d0963212383c148a1a7171b1bdc4e5d3e5fbc",
+      "blockHeight": 5357143,
+      "blockHash": "93b69bd4347bae5a98d3f95a21e95a3db406234f3d96abf264c256d8758a8365",
+      "scriptHash": "a4620d25a8b96db19724aa92577ab6995eba44a856e041ef8eab950d",
+      "validEscrowExecutions": 1
+    },
+    {
+      "txHash": "6669e2e3f5f4deb63a4f2cb4fc54fdc59950b4f99ba13282e3b6c49dfb10c78c",
+      "blockHeight": 5357144,
+      "blockHash": "297b93f7bc02cfb304c0f585e4a2978dff94ce3c095beaa596a9c73ee62331c0",
+      "scriptHash": "a4620d25a8b96db19724aa92577ab6995eba44a856e041ef8eab950d",
+      "validEscrowExecutions": 1
+    },
+    {
+      "txHash": "6527fd2478ffed7d3d4c2a24a0dfbd36a2ef81d3383d4522737c407f83f83595",
+      "blockHeight": 5357146,
+      "blockHash": "6c011cc9b69b6584dcf842fa6c6330d11af3b8c0f4b6862eecd4851f232ac2ab",
+      "scriptHash": "a4620d25a8b96db19724aa92577ab6995eba44a856e041ef8eab950d",
+      "validEscrowExecutions": 1
+    },
+    {
+      "txHash": "e3acc5913934037967ee0f0ccd3a23043e3793561f533d56e6e395f85d255452",
+      "blockHeight": 5357147,
+      "blockHash": "d19da51e0976529eded3cd50c00a3eef988a1cf18a18ec74d66de8514ed956dd",
+      "scriptHash": "a4620d25a8b96db19724aa92577ab6995eba44a856e041ef8eab950d",
+      "validEscrowExecutions": 1
+    },
+    {
+      "txHash": "049fefa020b1854401c7013656f4f9b0f97c26e2e66d9ffbe49f7d0084eecb61",
+      "blockHeight": 5357148,
+      "blockHash": "c70548b6ec6743e6018fb9fa6c41487a0a6c3b871f51502e7166627f9c2a6954",
+      "scriptHash": "a4620d25a8b96db19724aa92577ab6995eba44a856e041ef8eab950d",
+      "validEscrowExecutions": 1
+    },
+    {
+      "txHash": "8c6d23cb2f2cfe7315a1b21ffece2fe92406ebd32d496ae74cb8af83de88f3f8",
+      "blockHeight": 5357149,
+      "blockHash": "2f2308163c41bcaf01d9f8577f29238c8e6be91a2643361cf0936e322c7475d7",
+      "scriptHash": "a4620d25a8b96db19724aa92577ab6995eba44a856e041ef8eab950d",
+      "validEscrowExecutions": 1
+    }
+  ],
+  "passed": true,
+  "agents": {
+    "coordinator": "Elena",
+    "taskId": "01a19201-54d6-765f-9de6-3947c921d924",
+    "status": "completed",
+    "credits": 543.2881,
+    "children": [
+      {
+        "id": "01a19205-e374-771b-91d5-d094c40abb1f",
+        "coworker": "Hannah",
+        "coworkerId": "bb1dd1bc-a142-4cea-854e-ec284f1f9a1e",
+        "question": "4+4",
+        "result": "**Done**: 8",
+        "status": "COMPLETED",
+        "credits": 111.5247
+      },
+      {
+        "id": "01a19205-e6bc-7604-a306-42526e2b1856",
+        "coworker": "Alex",
+        "coworkerId": "cmlzotnai000104jus8njgbef",
+        "question": "5+5",
+        "result": "**Done**: 10",
+        "status": "COMPLETED",
+        "credits": 129.8981
+      },
+      {
+        "id": "01a19205-e9df-72c8-ab50-3cbe871dd157",
+        "coworker": "Maya",
+        "coworkerId": "019f3b78-6f0c-73ec-a56c-1f5925ce457a",
+        "question": "6+6",
+        "result": "**Done**: 12",
+        "status": "COMPLETED",
+        "credits": 55.7512
+      },
+      {
+        "id": "01a19205-ecd8-74a8-b9c6-116746d6dfe1",
+        "coworker": "Jamal",
+        "coworkerId": "019f3b78-6fec-711f-8e1c-6ffe5b22d83c",
+        "question": "7+7",
+        "result": "**Done**: 14",
+        "status": "COMPLETED",
+        "credits": 96.1436
+      }
+    ]
+  }
+}
