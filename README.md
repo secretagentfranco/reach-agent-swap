@@ -2,7 +2,7 @@
 
 A Uniswap-style, fixed-rate token exchange on Cardano Preprod. A maker chooses what to buy or sell, locks the offered tokens in escrow, and shares an order link. Counterparties choose their amount and exchange tokens through the contract, with partial fills supported.
 
-Elena coordinates four Sōkusumi agents to find counterparties. **For this demo, outreach is replaced by arithmetic questions** answered by Hannah, Alex, Maya and Jamal.
+Elena coordinates four Sōkusumi agents to find counterparties.
 
 The maker pays a **2% upfront operator fee**, in the deposited asset, on top of the escrow amount. The fee is included in the funding transaction; the Aiken contract enforces subsequent exchanges.
 
