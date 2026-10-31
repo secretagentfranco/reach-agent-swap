@@ -13,9 +13,13 @@ escrow/plutus.json
 /evidence/*
 !/evidence/preprod-demo.json
 !/evidence/test-summary.json
+!/evidence/outreach-integration.json
+!/evidence/preprod-four-wallet-demo.json
 /RESULTS.md
 /active-task.json
 /brief.md
 /coworker-brief.md
 /inspect-*.mjs
 .DS_Store
+
+/video-evidence/

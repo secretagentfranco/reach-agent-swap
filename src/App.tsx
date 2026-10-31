@@ -23,7 +23,7 @@ import { api, connect, providers, short, type Wallet } from "./api";
 import { formatAmount, parseAmount, type Token } from "../shared/amounts";
 type Order = any;
 const colors = ["#f39ec5", "#a7a4f4", "#ffc88d", "#8fd3bb"];
-const initials = ["H", "A", "M", "J"];
+const initials = ["X", "in", "T", "I"];
 export default function App() {
   const [config, setConfig] = useState<any>(),
     [orders, setOrders] = useState<Order[]>([]),
@@ -165,7 +165,7 @@ export default function App() {
       });
       await sign(p);
       go("order", p.orderId);
-      setNotice("Escrow funded. Elena is coordinating your demo team.");
+      setNotice("Escrow funded. Outreach is coordinating your Scout team.");
     });
   }
   async function accept() {
@@ -244,6 +244,7 @@ export default function App() {
     );
   }
   function status(s: string) {
+    if (s === "REPORTED") return "Report received";
     return s === "COMPLETED"
       ? "Completed"
       : s === "RUNNING"
@@ -257,6 +258,50 @@ export default function App() {
               : (s ?? "Waiting");
   }
   function Crew({ state }: { state?: any }) {
+    const historical = !!state && !state.coordinator;
+    const leader =
+      state?.coordinator ??
+      (historical
+        ? { name: "Elena" }
+        : (config?.coordinator ?? { name: "Outreach" }));
+    const team =
+      state?.team ??
+      (historical
+        ? (state.children ?? []).map((c: any) => ({
+            ...c,
+            name: c.coworker ?? c.name,
+            id: c.coworkerId ?? c.id,
+          }))
+        : (config?.crew ?? [
+            {
+              id: "scout-x",
+              name: "Scout",
+              platform: "X",
+              role: "X",
+              task: "Buyer discovery",
+            },
+            {
+              id: "scout-linkedin",
+              name: "Scout",
+              platform: "LinkedIn",
+              role: "LinkedIn",
+              task: "Business matching",
+            },
+            {
+              id: "scout-telegram",
+              name: "Scout",
+              platform: "Telegram",
+              role: "Telegram",
+              task: "Community matching",
+            },
+            {
+              id: "scout-instagram",
+              name: "Scout",
+              platform: "Instagram",
+              role: "Instagram",
+              task: "Audience matching",
+            },
+          ]));
     return (
       <section className="crew-section">
         <div className="section-title">
@@ -266,20 +311,26 @@ export default function App() {
           </div>
           <span className="demo-tag">
             <span />
-            Arithmetic demo
+            {historical ? "Previous team" : "Demo mode"}
           </span>
         </div>
         <div className="coordinator">
-          <span className="avatar elena">E</span>
+          <span className="avatar coordinator-avatar">{leader.name[0]}</span>
           <div>
             <strong>
-              Elena <span className="role">Coordinator</span>
+              {leader.name} <span className="role">Coordinator</span>
             </strong>
             <p>
               {state?.status === "completed"
-                ? "All four agent tasks completed."
+                ? historical
+                  ? "All four agent tasks completed."
+                  : state.traceVerified
+                    ? "Four Scout sessions verified in the deployed worker."
+                    : "Coordinator finished; individual sessions are unverified."
                 : state?.taskId
-                  ? "Coordinating four real Sōkusumi tasks."
+                  ? historical
+                    ? "Coordinating four Sōkusumi tasks."
+                    : "One Sōkusumi task. Four specialist Scout sessions."
                   : "Starts after your escrow deposit confirms."}
             </p>
           </div>
@@ -297,24 +348,21 @@ export default function App() {
         </div>
         <div className="connector" />
         <div className="crew-grid">
-          {(
-            config?.crew ?? [
-              { name: "Hannah", role: "Research", question: "4+4" },
-              { name: "Alex", role: "Analysis", question: "5+5" },
-              { name: "Maya", role: "Creative", question: "6+6" },
-              { name: "Jamal", role: "Outreach", question: "7+7" },
-            ]
-          ).map((c: any, i: number) => {
+          {team.map((c: any, i: number) => {
             const a = state?.children?.find(
-              (a: any) => a.name === c.name || a.coworker === c.name,
+              (a: any) =>
+                a.agentId === c.id ||
+                a.id === c.id ||
+                a.coworkerId === c.id ||
+                a.coworker === c.name,
             );
             return (
-              <div className="agent-card" key={c.name}>
+              <div className="agent-card" key={c.id ?? c.platform ?? c.name}>
                 <span className="avatar" style={{ background: colors[i] }}>
-                  {initials[i]}
+                  {historical ? c.name[0] : initials[i]}
                 </span>
                 <strong>{c.name}</strong>
-                <span>{c.role}</span>
+                <span>{c.platform ?? c.role}</span>
                 <div
                   className={
                     "agent-state " +
@@ -329,9 +377,9 @@ export default function App() {
                   {a ? status(a.status) : "Standby"}
                 </div>
                 <p>
-                  {c.question} →{" "}
-                  {a?.status === "COMPLETED"
-                    ? String(a.result ?? "Result received")
+                  {c.question ?? c.task ?? "Outreach brief"} →{" "}
+                  {a?.result
+                    ? String(a.result)
                         .replace(/^\*\*Done\*\*:\s*/, "")
                         .replace(/\*/g, "")
                         .trim()
@@ -351,13 +399,30 @@ export default function App() {
         <div className="crew-note">
           <ShieldCheck size={15} />
           <span>
-            Demo only. Agents answer simple questions. Nobody is contacted.
+            Demo mode: simulated outreach reports. No messages are sent.
           </span>
         </div>
+        {state?.taskId && (
+          <a
+            className="coordinator-link"
+            href={"https://preprod.sokosumi.com/tasks/" + state.taskId}
+            target="_blank"
+            rel="noreferrer"
+          >
+            View Sōkusumi task <ArrowUpRight size={12} />
+          </a>
+        )}
+        {state?.result && (
+          <details className="coordinator-report">
+            <summary>Coordinator report</summary>
+            <div className="raw-result">{state.result}</div>
+          </details>
+        )}
         {state?.error && <p className="inline-error">{state.error}</p>}
+        {state?.traceWarning && <p className="subtle">{state.traceWarning}</p>}
         {state?.credits > 0 && (
           <div className="subtle">
-            Recorded usage: {state.credits.toFixed(2)} Preprod credits
+            Recorded Sōkusumi usage: {state.credits.toFixed(2)} Preprod credits
           </div>
         )}
       </section>
@@ -1052,11 +1117,12 @@ export default function App() {
                 </div>
                 <div>
                   <b>02</b>
-                  <h3>Elena brings the team</h3>
+                  <h3>Outreach brings the Scouts</h3>
                   <p>
-                    Four real Sōkusumi Coworkers are hired. This demo only asks
-                    them arithmetic questions; it never contacts potential
-                    buyers or sellers.
+                    One Sōkusumi task launches the deployed Outreach coordinator
+                    and four Scout sessions for X, LinkedIn, Telegram and
+                    Instagram. System-controlled demo mode returns simulated
+                    outreach reports; nobody is contacted.
                   </p>
                 </div>
                 <div>

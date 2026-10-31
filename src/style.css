@@ -492,7 +492,7 @@ main {
   color: #fff;
   flex-shrink: 0;
 }
-.avatar.elena {
+.avatar.coordinator-avatar {
   background: #bc9add;
 }
 .coordinator strong {
@@ -1392,4 +1392,22 @@ footer > span {
   .hero h1 {
     font-size: 43px;
   }
+}
+
+.coordinator-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-size: 10px;
+  color: #a17bad;
+  margin-top: 12px;
+}
+.coordinator-report {
+  font-size: 10px;
+  color: #a186ad;
+  margin-top: 12px;
+}
+.coordinator-report summary {
+  cursor: pointer;
 }

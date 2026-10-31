@@ -11,7 +11,7 @@ import {
   provider,
   operator,
 } from "./chain";
-import { crew, pollAgents, startAgents } from "./agents";
+import { coordinator, crew, pollAgents, startAgents } from "./agents";
 import { escrowAddress, keyOf } from "../shared/escrow";
 import { validatorToScriptHash } from "@lucid-evolution/lucid";
 import { validator } from "../shared/escrow";
@@ -43,6 +43,7 @@ app.get("/api/config", (_req, res) => {
     feeBps: 200,
     escrowAddress,
     scriptHash: validatorToScriptHash(validator),
+    coordinator,
     crew,
     assets: [
       ...assets,

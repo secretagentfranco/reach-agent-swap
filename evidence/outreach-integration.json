@@ -1,0 +1,51 @@
+{
+  "checkedAt": "2026-10-31T13:25:36.834Z",
+  "coordinator": {
+    "name": "Outreach",
+    "id": "01a191fd-9561-7777-8886-ec6f6dc9f7cd"
+  },
+  "taskId": "01a19221-2a15-7630-bfe8-c085973f8061",
+  "status": "completed",
+  "mode": "arithmetic",
+  "traceVerified": true,
+  "sessionId": "wrun_01M6922D8FZSVB5WBJJYG9HRWY",
+  "messagesSent": 0,
+  "children": [
+    {
+      "agentId": "scout-x",
+      "name": "Scout",
+      "platform": "X",
+      "sessionId": "wrun_01M6922F9B7F01RYWBWFQAJF9Q",
+      "status": "COMPLETED",
+      "question": "4+4",
+      "result": "Arithmetic answer: 4 + 4 = 8"
+    },
+    {
+      "agentId": "scout-linkedin",
+      "name": "Scout",
+      "platform": "LinkedIn",
+      "sessionId": "wrun_01M6922F9D681JT12MHD2DT7WM",
+      "status": "COMPLETED",
+      "question": "5+5",
+      "result": "Arithmetic answer: 5 + 5 = 10"
+    },
+    {
+      "agentId": "scout-telegram",
+      "name": "Scout",
+      "platform": "Telegram",
+      "sessionId": "wrun_01M6922F9CPA4GHPF2MGRX7NC2",
+      "status": "COMPLETED",
+      "question": "6+6",
+      "result": "Arithmetic answer: 6 + 6 = 12"
+    },
+    {
+      "agentId": "scout-instagram",
+      "name": "Scout",
+      "platform": "Instagram",
+      "sessionId": "wrun_01M6922F9FPCYTQ5E5CTG0Z57V",
+      "status": "COMPLETED",
+      "question": "7+7",
+      "result": "Arithmetic answer: 7 + 7 = 14  \n\nMessages sent: 0."
+    }
+  ]
+}

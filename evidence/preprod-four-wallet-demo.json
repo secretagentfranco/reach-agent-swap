@@ -1,0 +1,234 @@
+{
+  "scenario": "Sell TOKEN X for TOKEN Y; Outreach runs four platform Scout sessions in system-controlled demo mode; 4 counterparties fill the escrow",
+  "network": "Preprod",
+  "startedAt": "2026-10-31T13:34:37.483Z",
+  "completedAt": "2026-10-31T13:44:20.008Z",
+  "orderId": "7ed4c805ecbbfcab77a9b8ff72620f05fcd9371eaf381cb33fe96c726b4b8137",
+  "scriptAddress": "addr_test1wzjxyrf94zukmvvhyj4fy4m6k6v4awjy4ptwqs00364e2rgl6ffrt",
+  "assets": {
+    "X": {
+      "symbol": "TOKEN X",
+      "name": "Demo token X",
+      "unit": "68569fec5bcd899d9b388a6cb596764319fd4ba82871aa7786bb4dcc583931666162643762",
+      "decimals": 6,
+      "color": "#fc68ad"
+    },
+    "Y": {
+      "symbol": "TOKEN Y",
+      "name": "Demo token Y",
+      "unit": "68569fec5bcd899d9b388a6cb596764319fd4ba82871aa7786bb4dcc593931666162643762",
+      "decimals": 6,
+      "color": "#7771e8"
+    }
+  },
+  "offerAmount": "1000000000",
+  "askAmount": "2000000000",
+  "operatorFee": "20000000",
+  "transactions": [
+    {
+      "label": "mint-X-Y-and-fund-4-wallets",
+      "txHash": "2fb83d94ede3664f5457b653fa0fb7d02cc05bf94ae04a867f28663bd6a50970",
+      "explorer": "https://preprod.cardanoscan.io/transaction/2fb83d94ede3664f5457b653fa0fb7d02cc05bf94ae04a867f28663bd6a50970",
+      "confirmed": true,
+      "submittedAt": "2026-10-31T13:34:39.596Z",
+      "submission": "submitted"
+    },
+    {
+      "label": "fund-escrow-and-2-percent-operator-fee",
+      "txHash": "938f16d77b96478eaa2e39fa2c7a50da6a15baeee4ba34838a42edcde63fe319",
+      "explorer": "https://preprod.cardanoscan.io/transaction/938f16d77b96478eaa2e39fa2c7a50da6a15baeee4ba34838a42edcde63fe319",
+      "confirmed": true
+    },
+    {
+      "label": "counterparty-01",
+      "txHash": "61c9dc1e71047989ade99f015dca8df5c0e338e1b584029a7495c3b638ae1ea3",
+      "explorer": "https://preprod.cardanoscan.io/transaction/61c9dc1e71047989ade99f015dca8df5c0e338e1b584029a7495c3b638ae1ea3",
+      "confirmed": true,
+      "submittedAt": "2026-10-31T13:40:37.615Z",
+      "submission": "submitted"
+    },
+    {
+      "label": "counterparty-02",
+      "txHash": "e0c9e9bbdf0ec07d7fecde1ab1324815f1fbb347a31345a86885ab2ff44a8c5a",
+      "explorer": "https://preprod.cardanoscan.io/transaction/e0c9e9bbdf0ec07d7fecde1ab1324815f1fbb347a31345a86885ab2ff44a8c5a",
+      "confirmed": true,
+      "submittedAt": "2026-10-31T13:41:35.106Z",
+      "submission": "submitted"
+    },
+    {
+      "label": "counterparty-03",
+      "txHash": "c72ae3c8e642c856194cd69ff1cf5a0610b9af3913a6955f7d27f46ae50bc053",
+      "explorer": "https://preprod.cardanoscan.io/transaction/c72ae3c8e642c856194cd69ff1cf5a0610b9af3913a6955f7d27f46ae50bc053",
+      "confirmed": true,
+      "submittedAt": "2026-10-31T13:42:55.013Z",
+      "submission": "submitted"
+    },
+    {
+      "label": "counterparty-04",
+      "txHash": "bdf94ee121a0681fa8f08d0de60ad0d1224d78bd988311b5ff379e6f9b895a94",
+      "explorer": "https://preprod.cardanoscan.io/transaction/bdf94ee121a0681fa8f08d0de60ad0d1224d78bd988311b5ff379e6f9b895a94",
+      "confirmed": true,
+      "submittedAt": "2026-10-31T13:43:52.664Z",
+      "submission": "submitted"
+    }
+  ],
+  "fills": [
+    {
+      "index": 0,
+      "wallet": "addr_test1qzv4spu4dnv6fsm988cv09lphql6367jdxlhleajf08n7u4szzzlydtpr67a7eetss7l9v8ff6ru3a3tgryyefh2h84sdwqlra",
+      "txHash": "61c9dc1e71047989ade99f015dca8df5c0e338e1b584029a7495c3b638ae1ea3",
+      "receivedX": "250000000",
+      "remainingY": "0"
+    },
+    {
+      "index": 1,
+      "wallet": "addr_test1qpg3s5e2the8qdxrdswnkpyjjelyeqx8jd92g72qqxa6z005ufjcp68afeswufeh2r4z4wc4y65ty88700x53jc39ahqn8ylcm",
+      "txHash": "e0c9e9bbdf0ec07d7fecde1ab1324815f1fbb347a31345a86885ab2ff44a8c5a",
+      "receivedX": "250000000",
+      "remainingY": "0"
+    },
+    {
+      "index": 2,
+      "wallet": "addr_test1qzpj0ycaldhqzcl2w2n9fwm8j8skf4f35ye4j9p4jsnjzsxzu23cpcywrp4nncn37t904cqweadhd53gq8tc3nsf9cusykv5gr",
+      "txHash": "c72ae3c8e642c856194cd69ff1cf5a0610b9af3913a6955f7d27f46ae50bc053",
+      "receivedX": "250000000",
+      "remainingY": "0"
+    },
+    {
+      "index": 3,
+      "wallet": "addr_test1qqxchfu6epmdkr0u5a05d5pq807d6rklervrxyfzrsj77gfpnvdhj4m8wwn43wexwmt56fdr0rlgf8qgh4455f7v506sd4n6pc",
+      "txHash": "bdf94ee121a0681fa8f08d0de60ad0d1224d78bd988311b5ff379e6f9b895a94",
+      "receivedX": "250000000",
+      "remainingY": "0"
+    }
+  ],
+  "checks": [
+    {
+      "name": "2% upfront fee transferred in deposited TOKEN X",
+      "passed": true,
+      "feeBaseUnits": "20000000"
+    },
+    {
+      "name": "4 distinct signed fills; each receives 250 X and pays 500 Y",
+      "passed": true
+    },
+    {
+      "name": "Maker received exactly 2000 Y and paid 1000 X plus 20 X fee",
+      "passed": true
+    },
+    {
+      "name": "Escrow fully consumed after final fill",
+      "passed": true
+    },
+    {
+      "name": "Outreach ran four real platform Scout sessions and all completed",
+      "passed": true
+    },
+    {
+      "name": "4 confirmed receipts each executed the exact compiled Plutus validator successfully",
+      "passed": true
+    }
+  ],
+  "receipts": [
+    {
+      "txHash": "61c9dc1e71047989ade99f015dca8df5c0e338e1b584029a7495c3b638ae1ea3",
+      "blockHeight": 5357256,
+      "blockHash": "e47db58cf027dde06cef08a07674855fbd657f07fad1e5d21e4306f059545f24",
+      "scriptHash": "a4620d25a8b96db19724aa92577ab6995eba44a856e041ef8eab950d",
+      "validEscrowExecutions": 1
+    },
+    {
+      "txHash": "e0c9e9bbdf0ec07d7fecde1ab1324815f1fbb347a31345a86885ab2ff44a8c5a",
+      "blockHeight": 5357259,
+      "blockHash": "a0241a8aa4488d6a043f1ca12c7a94f8b26c2ae4f4394962c17159895de8fccb",
+      "scriptHash": "a4620d25a8b96db19724aa92577ab6995eba44a856e041ef8eab950d",
+      "validEscrowExecutions": 1
+    },
+    {
+      "txHash": "c72ae3c8e642c856194cd69ff1cf5a0610b9af3913a6955f7d27f46ae50bc053",
+      "blockHeight": 5357261,
+      "blockHash": "450c95b6152d05f58692cbaa0b0d6d4602f272912de68d8cd5c3724626bb5b52",
+      "scriptHash": "a4620d25a8b96db19724aa92577ab6995eba44a856e041ef8eab950d",
+      "validEscrowExecutions": 1
+    },
+    {
+      "txHash": "bdf94ee121a0681fa8f08d0de60ad0d1224d78bd988311b5ff379e6f9b895a94",
+      "blockHeight": 5357265,
+      "blockHash": "25729f548e60985fee3d2ae6d27903ede132336f1fae44d523348ba5aacf63e2",
+      "scriptHash": "a4620d25a8b96db19724aa92577ab6995eba44a856e041ef8eab950d",
+      "validEscrowExecutions": 1
+    }
+  ],
+  "passed": true,
+  "agents": {
+    "coordinator": {
+      "name": "Outreach",
+      "id": "01a191fd-9561-7777-8886-ec6f6dc9f7cd"
+    },
+    "taskId": "01a1922d-07a6-73fa-bd2e-085e9f72e241",
+    "status": "completed",
+    "mode": "simulation",
+    "traceVerified": true,
+    "sessionId": "wrun_01M692T67KT3KRERYS3WVSTWJ0",
+    "messagesSent": 0,
+    "children": [
+      {
+        "id": "scout-x",
+        "name": "Scout",
+        "platform": "X",
+        "role": "X",
+        "task": "Buyer discovery",
+        "agentId": "scout-x",
+        "sessionId": "wrun_01M692T8VNY1YT4MSM5RVF8TND",
+        "status": "COMPLETED",
+        "result": "Candidate alias: @CardanoTraderPro (fictional)\nBuying intent: Expressed interest in swapping tokens at fixed rates on Cardano preprod, specifically seeking 2:1 TOKEN Y for TOKEN X ratios.\nMatch rationale: Candidate posted publicly about seeking fixed rate offers on TOKEN X to TOKEN Y matching this order's terms on Cardano Preprod.\nSuggested approach: Use hashtags #CardanoPreprodSwap OR search terms \"fixed rate TOKEN X TOKEN Y\" since 2024-06-01 to find similar prospects.\nSimulation: yes\nMessages sent: 0"
+      },
+      {
+        "id": "scout-linkedin",
+        "name": "Scout",
+        "platform": "LinkedIn",
+        "role": "LinkedIn",
+        "task": "Business matching",
+        "agentId": "scout-linkedin",
+        "sessionId": "wrun_01M692T8VKN59FTB5H2QGADA3C",
+        "status": "COMPLETED",
+        "result": "Candidate alias: CryptoAssetSynergy (fictional)\nBuying/selling intent: Unverified direct intent, but the role and company\u2019s focus on Cardano token liquidity and DeFi collaborations indicate potential interest.\nMatch rationale: Business development manager at a Cardano-focused blockchain company that partners frequently on token liquidity and swaps.\nSuggested approach: Search LinkedIn for \\\"Cardano token liquidity,\\\" \\\"DeFi partnerships,\\\" or \\\"blockchain business development\\\" to identify and connect with similar professionals.\nSimulation: yes\nMessages sent: 0"
+      },
+      {
+        "id": "scout-telegram",
+        "name": "Scout",
+        "platform": "Telegram",
+        "role": "Telegram",
+        "task": "Community matching",
+        "agentId": "scout-telegram",
+        "sessionId": "wrun_01M692T8VTNZEVYS156S5A7H0C",
+        "status": "COMPLETED",
+        "result": "Candidate aliases: Users within \"Cardano Preprod Token Exchange Hub\" and \"Cardano Preprod Traders\" (fictional channels/groups)\nBuying intent: Users posting intent to buy TOKEN X at rates close to 2 TOKEN Y per TOKEN X, matching asset units are closely monitored.\nMatch rationale: Active communities focusing on Cardano preprod token trading with buy/sell announcements relevant to the order\u2019s token asset units and pricing.\nSuggested approach: Search public messages with keywords \"TOKEN X buy,\" \"TOKEN X 2 TOKEN Y,\" or the specific asset unit IDs to filter relevant buy offers.\nSimulation: yes\nMessages sent: 0"
+      },
+      {
+        "id": "scout-instagram",
+        "name": "Scout",
+        "platform": "Instagram",
+        "role": "Instagram",
+        "task": "Audience matching",
+        "agentId": "scout-instagram",
+        "sessionId": "wrun_01M692T8VQWBM9V2JFEP61VS0C",
+        "status": "COMPLETED",
+        "result": "Candidate aliases: @CardanoTraderPro and @CryptoSwapHub (fictional)\nBuying/selling intent: Not explicitly confirmed but profile content suggests engagement with Cardano tokens and interest in token swaps.\nMatch rationale: Both accounts are active in Cardano ecosystem trading and crypto token swaps with posts that imply potential buyer interest.\nSuggested approach: Search hashtag #CardanoPreprod and #TokenSwap and initiate outreach via direct message referencing fixed-rate trade details.\nSimulation: yes\nMessages sent: 0\n\nResearch-only demo.\nMessages sent: 0"
+      }
+    ],
+    "result": "Scout \u2014 X\nStatus: Completed\nCandidate alias: @CardanoTraderPro (fictional)\nBuying intent: Expressed interest in swapping tokens at fixed rates on Cardano preprod, specifically seeking 2:1 TOKEN Y for TOKEN X ratios.\nMatch rationale: Candidate posted publicly about seeking fixed rate offers on TOKEN X to TOKEN Y matching this order's terms on Cardano Preprod.\nSuggested approach: Use hashtags #CardanoPreprodSwap OR search terms \"fixed rate TOKEN X TOKEN Y\" since 2024-06-01 to find similar prospects.\nSimulation: yes\nMessages sent: 0\n\nScout \u2014 LinkedIn\nStatus: Completed\nCandidate alias: CryptoAssetSynergy (fictional)\nBuying/selling intent: Unverified direct intent, but the role and company\u2019s focus on Cardano token liquidity and DeFi collaborations indicate potential interest.\nMatch rationale: Business development manager at a Cardano-focused blockchain company that partners frequently on token liquidity and swaps.\nSuggested approach: Search LinkedIn for \\\"Cardano token liquidity,\\\" \\\"DeFi partnerships,\\\" or \\\"blockchain business development\\\" to identify and connect with similar professionals.\nSimulation: yes\nMessages sent: 0\n\nScout \u2014 Telegram\nStatus: Completed\nCandidate aliases: Users within \"Cardano Preprod Token Exchange Hub\" and \"Cardano Preprod Traders\" (fictional channels/groups)\nBuying intent: Users posting intent to buy TOKEN X at rates close to 2 TOKEN Y per TOKEN X, matching asset units are closely monitored.\nMatch rationale: Active communities focusing on Cardano preprod token trading with buy/sell announcements relevant to the order\u2019s token asset units and pricing.\nSuggested approach: Search public messages with keywords \"TOKEN X buy,\" \"TOKEN X 2 TOKEN Y,\" or the specific asset unit IDs to filter relevant buy offers.\nSimulation: yes\nMessages sent: 0\n\nScout \u2014 Instagram\nStatus: Completed\nCandidate aliases: @CardanoTraderPro and @CryptoSwapHub (fictional)\nBuying/selling intent: Not explicitly confirmed but profile content suggests engagement with Cardano tokens and interest in token swaps.\nMatch rationale: Both accounts are active in Cardano ecosystem trading and crypto token swaps with posts that imply potential buyer interest.\nSuggested approach: Search hashtag #CardanoPreprod and #TokenSwap and initiate outreach via direct message referencing fixed-rate trade details.\nSimulation: yes\nMessages sent: 0\n\nResearch-only demo.\nMessages sent: 0"
+  },
+  "tamperTest": {
+    "orderId": "7ed4c805ecbbfcab77a9b8ff72620f05fcd9371eaf381cb33fe96c726b4b8137",
+    "scriptAddress": "addr_test1wzjxyrf94zukmvvhyj4fy4m6k6v4awjy4ptwqs00364e2rgl6ffrt",
+    "attempt": "Pay one smallest TOKEN Y unit less than the fixed-rate price for 250 X",
+    "requiredPaymentYBaseUnits": "500000000",
+    "tamperedPaymentYBaseUnits": "499999999",
+    "broadcast": false,
+    "scope": "Compiled Plutus validation against a live Preprod escrow UTxO; transaction not broadcast",
+    "checkedAt": "2026-10-31T13:39:51.039Z",
+    "rejected": true,
+    "error": "\"failed script execution Spend[1] the validator crashed / exited prematurely\""
+  }
+}

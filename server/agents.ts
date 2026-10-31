@@ -1,36 +1,42 @@
+import "dotenv/config";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import { store } from "./store";
+import { readScoutTrace, scoutChildren, type ScoutSpec } from "./scout-trace";
 const exec = promisify(execFile);
-const ELENA = "986c8b1b-7796-460f-996f-106d93d33e62";
-export const crew = [
+export const coordinator = {
+  name: "Outreach",
+  id:
+    process.env.OUTREACH_COWORKER_ID ?? "01a191fd-9561-7777-8886-ec6f6dc9f7cd",
+};
+export const crew: ScoutSpec[] = [
   {
-    name: "Hannah",
-    id: "bb1dd1bc-a142-4cea-854e-ec284f1f9a1e",
-    question: "4+4",
-    answer: "8",
-    role: "Research",
+    id: "scout-x",
+    name: "Scout",
+    platform: "X",
+    role: "X",
+    task: "Buyer discovery",
   },
   {
-    name: "Alex",
-    id: "cmlzotnai000104jus8njgbef",
-    question: "5+5",
-    answer: "10",
-    role: "Analysis",
+    id: "scout-linkedin",
+    name: "Scout",
+    platform: "LinkedIn",
+    role: "LinkedIn",
+    task: "Business matching",
   },
   {
-    name: "Maya",
-    id: "019f3b78-6f0c-73ec-a56c-1f5925ce457a",
-    question: "6+6",
-    answer: "12",
-    role: "Creative",
+    id: "scout-telegram",
+    name: "Scout",
+    platform: "Telegram",
+    role: "Telegram",
+    task: "Community matching",
   },
   {
-    name: "Jamal",
-    id: "019f3b78-6fec-711f-8e1c-6ffe5b22d83c",
-    question: "7+7",
-    answer: "14",
-    role: "Outreach",
+    id: "scout-instagram",
+    name: "Scout",
+    platform: "Instagram",
+    role: "Instagram",
+    task: "Audience matching",
   },
 ];
 let queue = Promise.resolve();
@@ -53,25 +59,31 @@ export async function startAgents(orderId: string) {
   if (state) return state;
   const marker = "SWAP-" + orderId.slice(0, 12);
   state = {
+    version: 2,
     orderId,
     marker,
     status: "starting",
     createdAt: Date.now(),
-    children: [],
-    budget: 3000,
+    coordinator,
+    team: crew,
+    mode: "simulation",
+    children: crew.map((c) => ({ ...c, status: "waiting" })),
     approvals: [],
   };
   store.put("agents", orderId, state);
   try {
-    const description = `This is a PREPROD hackathon demonstration, not real outreach. The maker funded escrow order ${orderId}. Delegate exactly FOUR real Coworker Tasks using your delegation tool, then return their IDs. All tasks and your coordination are approved within 3,000 test credits TOTAL (maximum 500 per child). NO real outreach, internet prospecting, research, publishing, messages, repo changes, purchases, accounts or deployments. Only answer arithmetic. Include the exact marker ${marker} in EVERY CHILD TASK NAME AND DESCRIPTION so I can find their platform Task records. The four assignments are: ${crew.map((c) => `${c.name} (ID ${c.id}), name '${marker} ${c.name}', question '${c.question}', return only '${c.answer}'`).join("; ")}. Each is already approved; execute it immediately if possible. If a plan checkpoint is mandatory, state the tiny arithmetic plan. You must actually create the four child tasks; four answers or personas written by you do not count. Do not hire anyone beyond these four. No need to wait for asynchronous children; return their real IDs and initial statuses.`;
+    const order = store.get("orders", orderId);
+    if (!order) throw Error("A funded order is required");
+    const intent = order.side === "sell" ? "buyers" : "sellers";
+    const description = `Find potential ${intent} for this fixed-rate token order. The maker wants to ${order.side} ${order.amount} ${order.token.symbol} for ${order.total} ${order.quote.symbol} on Cardano Preprod. Token asset unit: ${order.token.unit}. Quote asset unit: ${order.quote.unit}. Order ID: ${orderId}. Coordinate your four platform-specialist Scouts for X, LinkedIn, Telegram and Instagram. Return one candidate per platform, their buying or selling intent, why the candidate matches these terms, and a platform-specific outreach approach or next step. Organize the result under Scout — X, Scout — LinkedIn, Scout — Telegram and Scout — Instagram.`;
     const r = await cli([
       "tasks",
       "create",
       "--personal",
       "--coworker-id",
-      ELENA,
+      coordinator.id,
       "--name",
-      marker + " Elena",
+      marker + " Outreach",
       "--description",
       description,
       "--status",
@@ -85,7 +97,7 @@ export async function startAgents(orderId: string) {
     state.status = "running";
   } catch (e) {
     state.status = "uncertain";
-    state.error = String((e as Error).message).slice(0, 500);
+    state.error = (e as Error).message.slice(0, 500);
   }
   store.put("agents", orderId, state);
   return state;
@@ -97,80 +109,49 @@ export async function pollAgents(orderId: string) {
     ["completed", "failed", "uncertain"].includes(state.status)
   )
     return state;
+  // Do not reinterpret old Elena/Coworker histories as Scout sessions.
+  if (state.version !== 2) return state;
   try {
-    const list = await cli([
-      "tasks",
-      "list",
-      "--search",
-      state.marker,
-      "--limit",
-      "20",
-    ]);
-    const tasks = (list.tasks ?? []).filter(
-      (t: any) =>
-        t.id === state.taskId || crew.some((c) => c.id === t.coworkerId),
-    );
-    const details: any[] = [];
-    for (const t of tasks) {
-      const r = await cli(["tasks", "get", t.id]);
-      const task = r.task,
-        events = r.events ?? task.events ?? [];
-      const latest = events
-        .filter((e: any) => e.coworkerId && e.comment)
-        .at(-1);
-      const completion = events
-        .filter((e: any) => e.status === "COMPLETED" && e.comment)
-        .at(-1);
-      details.push({
-        id: t.id,
-        name: t.name,
-        coworkerId: task.coworkerId,
-        coworker: task.coworkerName,
-        status: task.status,
-        credits: task.totalCredits ?? 0,
-        result: completion?.comment ?? null,
-        latest: latest?.comment ?? null,
-      });
-      if (
-        task.status === "INPUT_REQUIRED" &&
-        latest &&
-        !state.approvals.includes(latest.id)
-      ) {
-        const total = details.reduce((s, t) => s + t.credits, 0);
-        if (total >= state.budget) throw Error("Agent budget exhausted");
-        const text = String(latest.comment);
-        if (
-          /authenticat|sign.?in|password|api.?key|token\s+secret|credit.card|real.money/i.test(
-            text,
-          )
-        )
-          throw Error("Agent requests operator intervention");
-        state.approvals.push(latest.id);
-        store.put("agents", orderId, state);
-        await cli([
-          "tasks",
-          "comment",
-          t.id,
-          "--comment",
-          `Go. Approved to execute ONLY the four arithmetic tasks in the original brief. No outreach. Maximum 3,000 Preprod credits total, 500 per child. Keep ${state.marker} in each child Task name and description. Proceed and return actual child IDs or your assigned arithmetic answer.`,
-        ]);
-      }
+    const r = await cli(["tasks", "get", state.taskId]);
+    const task = r.task;
+    if (task.coworkerId !== state.coordinator.id)
+      throw Error("Coordinator identity mismatch");
+    const events = r.events ?? task.events ?? [];
+    const completion = events
+      .filter((e: any) => e.status === "COMPLETED" && e.comment)
+      .at(-1);
+    const latest = events.filter((e: any) => e.coworkerId && e.comment).at(-1);
+    state.parent = {
+      id: task.id,
+      coworker: task.coworkerName,
+      status: task.status,
+      result: completion?.comment ?? null,
+    };
+    state.result = completion?.comment ?? null;
+    state.credits = task.totalCredits ?? null;
+    delete state.traceWarning;
+    let trace;
+    try {
+      trace = readScoutTrace(state.taskId);
+    } catch {
+      state.traceWarning = "The deployed worker trace could not be read.";
     }
-    state.children = crew.map((c) => ({
-      ...c,
-      ...details.find((t) => t.coworkerId === c.id),
-      status: details.find((t) => t.coworkerId === c.id)?.status ?? "waiting",
-    }));
-    state.parent = details.find((t) => t.id === state.taskId);
-    state.credits = details.reduce((s, t) => s + t.credits, 0);
-    if (state.children.every((c: any) => c.status === "COMPLETED"))
-      state.status = "completed";
-    else if (
-      details.some((t) => t.status === "FAILED" || t.status === "CANCELED")
-    )
+    const observed = scoutChildren(state.team, state.result ?? "", trace);
+    state.children = observed.children;
+    state.traceVerified = observed.verified;
+    state.sessionId = trace?.sessionId ?? null;
+    state.messagesSent = trace?.batch?.messagesSent ?? null;
+    if (task.status === "COMPLETED") {
+      if (state.children.some((c: any) => c.status === "FAILED"))
+        state.status = "failed";
+      else state.status = "completed";
+    } else if (["FAILED", "CANCELED"].includes(task.status))
       state.status = "failed";
+    if (task.status === "INPUT_REQUIRED")
+      state.error =
+        "Outreach requests operator input; no additional actions were approved.";
     state.updatedAt = Date.now();
-    delete state.error;
+    if (task.status !== "INPUT_REQUIRED") delete state.error;
   } catch (e) {
     state.error = (e as Error).message.slice(0, 500);
   }

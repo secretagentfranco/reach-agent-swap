@@ -1,5 +1,5 @@
 // One live integration scenario: sell TOKEN X for TOKEN Y, four real agents,
-// and twenty distinct wallets that execute the compiled partial-fill escrow.
+// and four distinct wallets that execute the compiled partial-fill escrow.
 import {
   Lucid,
   Koios,
@@ -19,12 +19,25 @@ import {
 import { store } from "../server/store";
 import { recordDirectFill, current, provider } from "../server/chain";
 const API = "http://127.0.0.1:5179/api";
-const path = "evidence/sell-20-wallets.json";
+const count = Number(process.env.DEMO_WALLETS ?? 4);
+if (![4, 20].includes(count)) throw Error("Use 4 or 20 counterparties");
+const perX = 1_000_000_000n / BigInt(count),
+  perY = 2_000_000_000n / BigInt(count);
+const run = process.env.DEMO_RUN ?? "default";
+if (!/^[a-z0-9-]+$/i.test(run)) throw Error("Invalid demo run name");
+const path = process.env.DEMO_EVIDENCE ?? `evidence/sell-${count}-wallets.json`;
+async function captureGate(stage: string) {
+  if (process.env.DEMO_CAPTURE !== "true") return;
+  e.captureStage = stage;
+  save();
+  console.log("CAPTURE READY: " + stage);
+  const gate = `.local/capture-${run}-${stage}.ready`;
+  while (!existsSync(gate)) await new Promise((r) => setTimeout(r, 1000));
+}
 const e: any = existsSync(path)
   ? JSON.parse(readFileSync(path, "utf8"))
   : {
-      scenario:
-        "Sell random native TOKEN X for TOKEN Y; Elena delegates four arithmetic tasks; twenty counterparties fill the escrow",
+      scenario: `Sell TOKEN X for TOKEN Y; Outreach runs four platform Scout sessions in system-controlled demo mode; ${count} counterparties fill the escrow`,
       network: "Preprod",
       startedAt: new Date().toISOString(),
       transactions: [],
@@ -53,16 +66,16 @@ const operator =
 const maker = await Lucid(provider, "Preprod");
 maker.selectWallet.fromSeed(keys.maker);
 const makerAddress = await maker.wallet().address();
-const takePath = ".local/demo-takers.json";
+const takePath = `.local/demo-takers-${count}-${run}.json`;
 if (!existsSync(takePath))
   writeFileSync(
     takePath,
-    JSON.stringify(Array.from({ length: 20 }, () => generateSeedPhrase())),
+    JSON.stringify(Array.from({ length: count }, () => generateSeedPhrase())),
     { mode: 0o600 },
   );
 chmodSync(takePath, 0o600);
 const seeds = JSON.parse(readFileSync(takePath, "utf8"));
-if (seeds.length !== 20) throw Error("Expected exactly 20 wallets");
+if (seeds.length !== count) throw Error("Unexpected counterparty count");
 const takers: LucidEvolution[] = [];
 const addresses: string[] = [];
 for (const seed of seeds) {
@@ -71,7 +84,7 @@ for (const seed of seeds) {
   takers.push(l);
   addresses.push(await l.wallet().address());
 }
-if (new Set(addresses).size !== 20) throw Error("Wallets must be distinct");
+if (new Set(addresses).size !== count) throw Error("Wallets must be distinct");
 e.maker = makerAddress;
 e.operator = operator;
 e.wallets = addresses;
@@ -144,8 +157,8 @@ async function send(
 try {
   if (!e.funded) {
     const ada = await balance(makerAddress, "lovelace");
-    if (ada < 500_000_000n)
-      throw Error("At least 500 test ADA required; current " + ada);
+    if (ada < BigInt(count) * 20_000_000n + 50_000_000n)
+      throw Error("Insufficient test ADA; current " + ada);
     const policy = scriptFromNative({
       type: "sig",
       keyHash: keyOf(makerAddress),
@@ -155,7 +168,7 @@ try {
       !Y.unit.startsWith(mintingPolicyToId(policy))
     )
       throw Error("Mint authority mismatch");
-    await send(maker, "mint-X-Y-and-fund-20-wallets", async () => {
+    await send(maker, `mint-X-Y-and-fund-${count}-wallets`, async () => {
       let tx = maker
         .newTx()
         .mintAssets({ [X.unit]: 10_000_000_000n, [Y.unit]: 30_000_000_000n })
@@ -163,7 +176,7 @@ try {
       for (const a of addresses)
         tx = tx.pay.ToAddress(a, {
           lovelace: 20_000_000n,
-          [Y.unit]: 100_000_000n,
+          [Y.unit]: perY,
         });
       return tx.complete();
     });
@@ -192,6 +205,7 @@ try {
     save();
   }
   if (!e.deposited) {
+    await captureGate("initiator");
     const p = e.prepared;
     const witness = await maker.fromTx(p.cbor).partialSign.withWallet();
     await api("/transactions/" + p.id + "/submit", { witness });
@@ -235,22 +249,24 @@ try {
     });
     save();
     console.log(
-      "Escrow funded; operator received 20 TOKEN X; Elena workflow started.",
+      "Escrow funded; operator received 20 TOKEN X; Outreach workflow started.",
     );
   }
-  for (let i = 0; i < 20; i++) {
+  await captureGate("funded");
+  for (let i = 0; i < count; i++) {
     const label = "counterparty-" + String(i + 1).padStart(2, "0");
     let recorded = e.fills.find((f: any) => f.index === i);
     if (recorded) continue;
+    await captureGate(`counterparty-${i + 1}-before`);
     const hash = await send(takers[i], label, async () => {
       const u = await current(e.orderId);
       if (!u) throw Error("Escrow unavailable at fill " + i);
-      return fill(takers[i], u, 50_000_000n);
+      return fill(takers[i], u, perX);
     });
-    await recordDirectFill(e.orderId, hash, addresses[i], "50000000");
+    await recordDirectFill(e.orderId, hash, addresses[i], perX.toString());
     const received = await balance(addresses[i], X.unit),
       spentY = await balance(addresses[i], Y.unit);
-    if (received !== 50_000_000n || spentY !== 0n)
+    if (received !== perX || spentY !== 0n)
       throw Error("Counterparty balances mismatch " + i);
     e.fills.push({
       index: i,
@@ -260,7 +276,10 @@ try {
       remainingY: spentY.toString(),
     });
     save();
-    console.log("Fill " + (i + 1) + "/20 verified: 50 X for 100 Y");
+    console.log(
+      `Fill ${i + 1}/${count} verified: ${perX / 1_000_000n} X for ${perY / 1_000_000n} Y`,
+    );
+    await captureGate(`counterparty-${i + 1}-after`);
   }
   const makerX = await balance(makerAddress, X.unit),
     makerY = await balance(makerAddress, Y.unit);
@@ -271,14 +290,14 @@ try {
   if (await current(e.orderId)) throw Error("Escrow remains after full fill");
   e.checks.push(
     {
-      name: "20 distinct signed fills; each receives 50 X and pays 100 Y",
+      name: `${count} distinct signed fills; each receives ${perX / 1_000_000n} X and pays ${perY / 1_000_000n} Y`,
       passed: true,
     },
     {
       name: "Maker received exactly 2000 Y and paid 1000 X plus 20 X fee",
       passed: true,
     },
-    { name: "Escrow fully consumed after twentieth fill", passed: true },
+    { name: "Escrow fully consumed after final fill", passed: true },
   );
   e.phase = "waiting-agents";
   save();
@@ -311,8 +330,12 @@ try {
     !e.agents.children.every((c: any) => c.status === "COMPLETED" && c.result)
   )
     throw Error("Four agent results not completed");
+  if (e.agents.version === 2 && !e.agents.traceVerified)
+    throw Error(
+      "Four deployed Scout sessions were not verified; configure OUTREACH_TRACE_DIR",
+    );
   e.checks.push({
-    name: "Elena created four real arithmetic Coworker Tasks and all completed",
+    name: "Outreach ran four real platform Scout sessions and all completed",
     passed: true,
   });
   const r = await fetch("https://preprod.koios.rest/api/v1/tx_info", {
@@ -345,7 +368,7 @@ try {
     };
   });
   e.checks.push({
-    name: "20 confirmed receipts each executed the exact compiled Plutus validator successfully",
+    name: `${count} confirmed receipts each executed the exact compiled Plutus validator successfully`,
     passed: true,
   });
   e.phase = "completed";
@@ -353,7 +376,7 @@ try {
   e.passed = true;
   save();
   console.log(
-    "PASS: one live sell-order scenario, 20 wallets, operator fee, four real agents. Evidence: " +
+    `PASS: one live sell-order scenario, ${count} wallets, operator fee, four real Scout sessions. Evidence: ` +
       path,
   );
 } catch (err) {
